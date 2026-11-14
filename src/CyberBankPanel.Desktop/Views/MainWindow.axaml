@@ -1,0 +1,162 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:CyberBankPanel.Desktop.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="1360" d:DesignHeight="820"
+        x:Class="CyberBankPanel.Desktop.Views.MainWindow"
+        x:DataType="vm:MainViewModel"
+        Title="CyberBank Panel"
+        Width="1360" Height="820" MinWidth="1080" MinHeight="680"
+        Background="#0D1018"
+        Foreground="#EEF2FA">
+
+    <Design.DataContext>
+        <vm:MainViewModel />
+    </Design.DataContext>
+
+    <Grid RowDefinitions="68,*,34" Background="#0D1018">
+        <Border Grid.Row="0" Background="#121725" BorderBrush="#252E43" BorderThickness="0,0,0,1" Padding="24,0">
+            <Grid ColumnDefinitions="*,Auto" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Spacing="14" VerticalAlignment="Center">
+                    <Border Width="28" Height="28" CornerRadius="8" Background="#4F46E5" BorderBrush="#818CF8" BorderThickness="1">
+                        <TextBlock Text="CB" FontWeight="Bold" FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <StackPanel Spacing="1">
+                        <TextBlock Text="{Binding ProductName}" FontSize="14" FontWeight="Bold" LetterSpacing="1.2" />
+                        <TextBlock Text="LOCAL APPLICATION REGISTRY / WINDOWS" FontSize="10" Foreground="#8490AB" LetterSpacing="0.8" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="12" VerticalAlignment="Center">
+                    <Border Background="#162136" CornerRadius="12" Padding="10,5">
+                        <TextBlock Text="LOCAL ONLY" FontSize="10" FontWeight="SemiBold" Foreground="#A5B4FC" />
+                    </Border>
+                    <Border Background="#18261F" CornerRadius="12" Padding="10,5">
+                        <TextBlock Text="REGISTRY HEALTHY" FontSize="10" FontWeight="SemiBold" Foreground="#8BE1A9" />
+                    </Border>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="1" ColumnDefinitions="210,*,330" RowDefinitions="*" Background="#0D1018">
+            <Border Grid.Column="0" Background="#101522" BorderBrush="#252E43" BorderThickness="0,0,1,0" Padding="14,18">
+                <Grid RowDefinitions="auto,*,auto">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="CONTROL" FontSize="10" FontWeight="Bold" Foreground="#65708A" LetterSpacing="1" Margin="10,0,0,4" />
+                        <Border Background="#1C2540" CornerRadius="7" Padding="10,9">
+                            <TextBlock Text="Overview" FontWeight="SemiBold" Foreground="#C7D2FE" />
+                        </Border>
+                        <Border Background="Transparent" CornerRadius="7" Padding="10,9">
+                            <TextBlock Text="Installed products" Foreground="#AAB4CC" />
+                        </Border>
+                        <Border Background="Transparent" CornerRadius="7" Padding="10,9">
+                            <TextBlock Text="Activity" Foreground="#AAB4CC" />
+                        </Border>
+                        <Border Background="Transparent" CornerRadius="7" Padding="10,9">
+                            <TextBlock Text="Diagnostics" Foreground="#AAB4CC" />
+                        </Border>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Spacing="9">
+                        <Border Background="#151B2A" BorderBrush="#29344C" BorderThickness="1" CornerRadius="8" Padding="11">
+                            <StackPanel Spacing="4">
+                                <TextBlock Text="PRODUCT BOUNDARY" FontSize="9" Foreground="#7F8CA8" LetterSpacing="0.8" />
+                                <TextBlock Text="Separate apps. Separate data." FontSize="11" TextWrapping="Wrap" Foreground="#C6CEE0" />
+                            </StackPanel>
+                        </Border>
+                        <TextBlock Text="CyberBank / local control" FontSize="10" Foreground="#66718B" HorizontalAlignment="Center" />
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <Grid Grid.Column="1" Margin="24" RowDefinitions="auto,*,auto" RowSpacing="16">
+                <Grid ColumnDefinitions="*,Auto">
+                    <StackPanel Spacing="4">
+                        <TextBlock Text="INSTALLED PRODUCTS" FontSize="20" FontWeight="SemiBold" />
+                        <TextBlock Text="Only explicit local manifests are listed. Panel never opens product databases, credentials, or source assets." FontSize="12" Foreground="#8D98B4" />
+                    </StackPanel>
+                    <Button Grid.Column="1" Content="Register local app" Click="RegisterLocalApp_Click" Background="#4F46E5" Foreground="White" BorderBrush="#818CF8" Padding="16,9" VerticalAlignment="Center" />
+                </Grid>
+
+                <Border Grid.Row="1" Background="#121725" BorderBrush="#252E43" BorderThickness="1" CornerRadius="10">
+                    <Grid RowDefinitions="42,*">
+                        <Border Background="#161C2C" BorderBrush="#252E43" BorderThickness="0,0,0,1" Padding="16,0">
+                            <Grid ColumnDefinitions="2.3*,1.1*,0.9*,1*,Auto" VerticalAlignment="Center">
+                                <TextBlock Text="PRODUCT" FontSize="10" FontWeight="Bold" Foreground="#78849F" LetterSpacing="0.8" />
+                                <TextBlock Grid.Column="1" Text="VERSION" FontSize="10" FontWeight="Bold" Foreground="#78849F" LetterSpacing="0.8" />
+                                <TextBlock Grid.Column="2" Text="STATUS" FontSize="10" FontWeight="Bold" Foreground="#78849F" LetterSpacing="0.8" />
+                                <TextBlock Grid.Column="3" Text="CAPABILITIES" FontSize="10" FontWeight="Bold" Foreground="#78849F" LetterSpacing="0.8" />
+                            </Grid>
+                        </Border>
+                        <ScrollViewer Grid.Row="1">
+                            <ItemsControl ItemsSource="{Binding Products}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate x:DataType="vm:PanelProductItem">
+                                        <Border BorderBrush="#20283A" BorderThickness="0,0,0,1" Padding="16,14">
+                                            <Grid ColumnDefinitions="2.3*,1.1*,0.9*,1*,Auto" VerticalAlignment="Center">
+                                                <StackPanel Spacing="3">
+                                                    <TextBlock Text="{Binding DisplayName}" FontWeight="SemiBold" />
+                                                    <TextBlock Text="{Binding AppId}" FontSize="10" Foreground="#74809B" />
+                                                </StackPanel>
+                                                <TextBlock Grid.Column="1" Text="{Binding Version}" Foreground="#C2CAE0" />
+                                                <Border Grid.Column="2" Background="#18261F" CornerRadius="10" Padding="8,4" HorizontalAlignment="Left">
+                                                    <TextBlock Text="{Binding AvailabilityLabel}" FontSize="9" FontWeight="Bold" Foreground="#8BE1A9" />
+                                                </Border>
+                                                <TextBlock Grid.Column="3" Text="LOCAL CAPABILITIES" FontSize="10" Foreground="#8F9AB6" />
+                                                <Button Grid.Column="4" Content="Inspect" Click="InspectProduct_Click" Background="#1B2234" Foreground="#C9D2EA" BorderBrush="#303B55" />
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </Grid>
+                </Border>
+
+                <Border Grid.Row="2" Background="#111827" BorderBrush="#26334C" BorderThickness="1" CornerRadius="8" Padding="14,11">
+                    <TextBlock Text="Empty registry is a safe state: register a product only from its explicit cyberbank-app.json manifest beside the installed executable." FontSize="11" Foreground="#AAB5CE" />
+                </Border>
+            </Grid>
+
+            <Border Grid.Column="2" Background="#101522" BorderBrush="#252E43" BorderThickness="1,0,0,0" Padding="18,22">
+                <Grid RowDefinitions="auto,auto,*,auto" RowSpacing="16">
+                    <StackPanel Spacing="4">
+                        <TextBlock Text="PRODUCT INSPECTOR" FontSize="10" FontWeight="Bold" Foreground="#70809F" LetterSpacing="1" />
+                        <TextBlock Text="{Binding SelectedProduct.DisplayName}" FontSize="18" FontWeight="SemiBold" />
+                        <TextBlock Text="{Binding SelectedProduct.AppId}" FontSize="11" Foreground="#8591AB" />
+                    </StackPanel>
+                    <Border Grid.Row="1" Background="#151C2D" BorderBrush="#2A3450" BorderThickness="1" CornerRadius="8" Padding="12">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <StackPanel Spacing="4">
+                                <TextBlock Text="INSTALLATION STATUS" FontSize="9" Foreground="#70809F" LetterSpacing="0.8" />
+                                <TextBlock Text="{Binding SelectedProduct.AvailabilityDetail}" TextWrapping="Wrap" FontSize="11" Foreground="#C7D0E8" />
+                            </StackPanel>
+                            <TextBlock Grid.Column="1" Text="{Binding SelectedProduct.AvailabilityLabel}" Foreground="#8BE1A9" FontSize="11" FontWeight="Bold" VerticalAlignment="Center" />
+                        </Grid>
+                    </Border>
+                    <StackPanel Grid.Row="2" Spacing="12">
+                        <StackPanel Spacing="5">
+                            <TextBlock Text="REGISTRY INFORMATION" FontSize="10" FontWeight="Bold" Foreground="#70809F" LetterSpacing="0.8" />
+                            <TextBlock Text="Version is shown from the registered local manifest. Product storage remains isolated." TextWrapping="Wrap" FontSize="11" Foreground="#B3BDD5" />
+                        </StackPanel>
+                        <Border Height="1" Background="#263047" />
+                        <StackPanel Spacing="5">
+                            <TextBlock Text="LOCAL ACTIONS" FontSize="10" FontWeight="Bold" Foreground="#70809F" LetterSpacing="0.8" />
+                            <TextBlock Text="Launch requires an explicit action. No automatic startup or background control is enabled." TextWrapping="Wrap" FontSize="11" Foreground="#B3BDD5" />
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Row="3" Spacing="10">
+                        <Button Content="Launch selected product" Click="LaunchSelectedProduct_Click" IsEnabled="{Binding SelectedProduct.IsAvailable}" Background="#4F46E5" Foreground="White" BorderBrush="#818CF8" HorizontalAlignment="Stretch" />
+                        <Button Content="View safe diagnostics" Click="ViewSafeDiagnostics_Click" Background="#1B2234" Foreground="#D3DBEF" BorderBrush="#303B55" HorizontalAlignment="Stretch" />
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <Border Grid.Row="2" Background="#101522" BorderBrush="#252E43" BorderThickness="0,1,0,0" Padding="20,0">
+            <Grid ColumnDefinitions="*,Auto" VerticalAlignment="Center">
+                <TextBlock Text="{Binding StatusMessage}" FontSize="10" FontWeight="Bold" Foreground="#9AA8C4" LetterSpacing="0.8" />
+                <TextBlock Grid.Column="1" Text="NO CLOUD SYNC • NO EMBEDDED PRODUCT WINDOWS" FontSize="10" Foreground="#68758F" />
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

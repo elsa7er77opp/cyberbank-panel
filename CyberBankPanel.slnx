@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/CyberBankPanel.Application/CyberBankPanel.Application.csproj" />
+    <Project Path="src/CyberBankPanel.Desktop/CyberBankPanel.Desktop.csproj" />
+    <Project Path="src/CyberBankPanel.Domain/CyberBankPanel.Domain.csproj" />
+    <Project Path="src/CyberBankPanel.Infrastructure/CyberBankPanel.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/CyberBankPanel.Desktop.Tests/CyberBankPanel.Desktop.Tests.csproj" />
+    <Project Path="tests/CyberBankPanel.Domain.Tests/CyberBankPanel.Domain.Tests.csproj" />
+    <Project Path="tests/CyberBankPanel.Infrastructure.Tests/CyberBankPanel.Infrastructure.Tests.csproj" />
+  </Folder>
+</Solution>

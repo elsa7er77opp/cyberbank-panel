@@ -1,0 +1,12 @@
+{
+  "appId": "cyberbank-panel",
+  "displayName": "CyberBank Panel",
+  "version": "0.1.0-alpha",
+  "executablePath": "CyberBankPanel.Desktop.exe",
+  "iconPath": "Assets/Brand/cyberbank-panel-app-icon.ico",
+  "capabilities": [
+    "Explicit local application registry",
+    "Path-contained launch requests",
+    "Safe local diagnostics and audit events"
+  ]
+}
